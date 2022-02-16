@@ -48,6 +48,7 @@ const start = async () => {
     await Artist.create({ name: "Sarah Vaughn", instrumentId: vocals.id });
     await Artist.create({ name: "Louis Armstrong", instrumentId: vocals.id });
     console.log("we syncd and seeded");
+    process.exit();
   } catch (ex) {
     console.log(`darnnnnnnn ${ex}`);
   }
