@@ -1,8 +1,3 @@
-// const Sequelize = require("sequelize");
-// const sequelize = new Sequelize(
-//   process.env.DATABASE_URL || "postgres://localhost/jazz_greats_db"
-// );
-
 const serverImports = require("./server");
 const Artist = serverImports.Artist;
 const Instrument = serverImports.Instrument;
