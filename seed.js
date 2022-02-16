@@ -3,62 +3,54 @@
 //   process.env.DATABASE_URL || "postgres://localhost/jazz_greats_db"
 // );
 
-// const Instrument = sequelize.define("instrument", {
-//   name: {
-//     type: Sequelize.STRING,
-//     allowNull: false,
-//     unique: true,
-//   },
-// });
+const serverImports = require("./server");
+const Artist = serverImports.Artist;
+const Instrument = serverImports.Instrument;
+const sequelize = serverImports.sequelize;
 
-// const Artist = sequelize.define("artist", {
-//   name: {
-//     type: Sequelize.STRING,
-//     allowNull: false,
-//     unique: true,
-//   },
-// });
+const start = async () => {
+  try {
+    await sequelize.sync({ force: true });
+    const tenor_sax = await Instrument.create({ name: "tenor sax" });
+    const alto_sax = await Instrument.create({ name: "alto sax" });
+    const trumpet = await Instrument.create({ name: "trumpet" });
+    const guitar = await Instrument.create({ name: "guitar" });
+    const bass = await Instrument.create({ name: "bass" });
+    const piano = await Instrument.create({ name: "piano" });
+    const drums = await Instrument.create({ name: "drums" });
+    const vocals = await Instrument.create({ name: "vocalists" });
+    await Artist.create({ name: "John Coltrane", instrumentId: tenor_sax.id });
+    await Artist.create({ name: "Sonny Rollins", instrumentId: tenor_sax.id });
+    await Artist.create({ name: "Joe Henderson", instrumentId: tenor_sax.id });
+    await Artist.create({ name: "Wayne Shorter", instrumentId: tenor_sax.id });
+    await Artist.create({ name: "Charlie Parker", instrumentId: alto_sax.id });
+    await Artist.create({
+      name: "Cannonball Adderly",
+      instrumentId: alto_sax.id,
+    });
+    await Artist.create({ name: "Ornette Coleman", instrumentId: alto_sax.id });
+    await Artist.create({ name: "Lee Morgan", instrumentId: trumpet.id });
+    await Artist.create({ name: "Clifford Brown", instrumentId: trumpet.id });
+    await Artist.create({ name: "Miles Davis", instrumentId: trumpet.id });
+    await Artist.create({ name: "Kenny Dorham", instrumentId: trumpet.id });
+    await Artist.create({ name: "Wes Montgomery", instrumentId: guitar.id });
+    await Artist.create({ name: "Jim Hall", instrumentId: guitar.id });
+    await Artist.create({ name: "Paul Chambers", instrumentId: bass.id });
+    await Artist.create({ name: "Ron Carter", instrumentId: bass.id });
+    await Artist.create({ name: "Ray Brown", instrumentId: bass.id });
+    await Artist.create({ name: "McCoy Tyner", instrumentId: piano.id });
+    await Artist.create({ name: "Sam Jones", instrumentId: piano.id });
+    await Artist.create({ name: "Wynton Kelly", instrumentId: piano.id });
+    await Artist.create({ name: "Elvin Jones", instrumentId: drums.id });
+    await Artist.create({ name: "Philly Joe Jones", instrumentId: drums.id });
+    await Artist.create({ name: "Roy Hanes", instrumentId: drums.id });
+    await Artist.create({ name: "Ella Fitzgerald", instrumentId: vocals.id });
+    await Artist.create({ name: "Sarah Vaughn", instrumentId: vocals.id });
+    await Artist.create({ name: "Louis Armstrong", instrumentId: vocals.id });
+    console.log("we syncd and seeded");
+  } catch (ex) {
+    console.log(`darnnnnnnn ${ex}`);
+  }
+};
 
-// const start = async () => {
-//   try {
-//     await sequelize.sync({ force: true });
-//     await Instrument.create({ name: "tenor sax" });
-//     await Instrument.create({ name: "alto sax" });
-//     await Instrument.create({ name: "trumpet" });
-//     await Instrument.create({ name: "guitar" });
-//     await Instrument.create({ name: "bass" });
-//     await Instrument.create({ name: "piano" });
-//     await Instrument.create({ name: "drums" });
-//     await Instrument.create({ name: "vocalists" });
-//     await Artist.create({ name: "John Coltrane" });
-//     await Artist.create({ name: "Sonny Rollins" });
-//     await Artist.create({ name: "Joe Henderson" });
-//     await Artist.create({ name: "Wayne Shorter" });
-//     await Artist.create({ name: "Charlie Parker" });
-//     await Artist.create({ name: "Cannonball Adderly" });
-//     await Artist.create({ name: "Ornette Coleman" });
-//     await Artist.create({ name: "Lee Morgan" });
-//     await Artist.create({ name: "Clifford Brown" });
-//     await Artist.create({ name: "Miles Davis" });
-//     await Artist.create({ name: "Kenny Dorham" });
-//     await Artist.create({ name: "Wes Montgomery" });
-//     await Artist.create({ name: "Jim Hall" });
-//     await Artist.create({ name: "Paul Chambers" });
-//     await Artist.create({ name: "Ron Carter" });
-//     await Artist.create({ name: "Ray Brown" });
-//     await Artist.create({ name: "McCoy Tyner" });
-//     await Artist.create({ name: "Sam Jones" });
-//     await Artist.create({ name: "Wynton Kelly" });
-//     await Artist.create({ name: "Elvin Jones" });
-//     await Artist.create({ name: "Philly Joe Jones" });
-//     await Artist.create({ name: "Roy Hanes" });
-//     await Artist.create({ name: "Ella Fitzgerald" });
-//     await Artist.create({ name: "Sarah Vaughn" });
-//     await Artist.create({ name: "Nancy Wilson" });
-//     console.log("we syncd and seeded");
-//   } catch (ex) {
-//     console.log(`darnnnnnnn ${ex}`);
-//   }
-// };
-
-// module.exports = { start, Instrument, Artist };
+start();

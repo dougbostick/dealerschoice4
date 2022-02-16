@@ -2,6 +2,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  background: linear-gradient(rgb(132, 215, 243), rgb(163, 41, 163));
 }
 
 h1 {
@@ -12,4 +13,13 @@ li {
   list-style: none;
   padding: 10px;
   font-size: 2rem;
+}
+
+div {
+  font-size: 30px;
+  padding: 10px;
+}
+
+#home {
+  font-size: 20px;
 }
